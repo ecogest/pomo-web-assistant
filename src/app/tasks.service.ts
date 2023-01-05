@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { Section } from './sections.service';
 
-export type TaskStatus = 'todo' | 'ongoing' | 'done';
+export type TaskStatus = 'todo' | 'done';
 
 export interface TaskProperties {
   content: string;

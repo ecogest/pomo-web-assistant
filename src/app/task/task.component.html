@@ -1,1 +1,4 @@
-<li>{{ task.content }}</li>
+<li>
+  <input type="checkbox" [formControl]="statusControl" />
+  <span class="content">{{ task.content }}</span>
+</li>
