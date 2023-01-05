@@ -1,1 +1,9 @@
-<app-section *ngFor="let section of sections" [title]="section"> </app-section>
+<!-- Tasks with no section -->
+<app-section>
+  <app-tasks></app-tasks>
+</app-section>
+
+<!-- Tasks with section -->
+<app-section *ngFor="let section of sections" [section]="section">
+  <app-tasks [section]="section"></app-tasks>
+</app-section>

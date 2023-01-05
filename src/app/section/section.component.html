@@ -1,4 +1,6 @@
-<h2>
-  <span class="icon">{{ title.icon ? title.icon : " " }}</span>
-  <span class="content">{{ title.content }}</span>
+<h2 *ngIf="section">
+  <span class="icon">{{ section.icon ? section.icon : " " }}</span>
+  <span class="content">{{ section.title }}</span>
 </h2>
+<!-- <app-tasks [section]="section"></app-tasks> -->
+<ng-content></ng-content>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SectionTitle } from '../section/section.component';
+import { Component, inject } from '@angular/core';
+import { Section, SectionsService } from '../sections.service';
 
 @Component({
   selector: 'app-sections',
@@ -7,18 +7,5 @@ import { SectionTitle } from '../section/section.component';
   styleUrls: ['./sections.component.scss'],
 })
 export class SectionsComponent {
-  sections: SectionTitle[] = [
-    {
-      icon: '🏙️',
-      content: 'This morning',
-    },
-    {
-      icon: '🌇',
-      content: 'This afternoon',
-    },
-    {
-      icon: '🌃',
-      content: 'Tonight',
-    },
-  ];
+  sections: Section[] = inject(SectionsService).sections;
 }

@@ -1,9 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-export interface SectionTitle {
-  icon?: string;
-  content: string;
-}
+import { Section } from '../sections.service';
 
 @Component({
   selector: 'app-section',
@@ -11,5 +7,5 @@ export interface SectionTitle {
   styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent {
-  @Input() title: SectionTitle = { content: 'Section' };
+  @Input() section?: Section;
 }
