@@ -1,1 +1,3 @@
-<p>add-task works!</p>
+<form (ngSubmit)="onSubmit()">
+  <input [formControl]="taskControl" placeholder="Add task" />
+</form>

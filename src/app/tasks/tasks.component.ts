@@ -1,4 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Section } from '../sections.service';
 import { Task, TasksService } from '../tasks.service';
 
@@ -10,7 +11,7 @@ import { Task, TasksService } from '../tasks.service';
 export class TasksComponent implements OnInit {
   @Input() section?: Section;
 
-  tasks: Task[] = [];
+  tasks$: Observable<Task[]> = of([]);
 
   private tasksService = inject(TasksService);
 
@@ -19,6 +20,6 @@ export class TasksComponent implements OnInit {
       section: this.section,
       content: `hello ${this.section?.title}`,
     });
-    this.tasks = this.tasksService.getTasks(this.section);
+    this.tasks$ = this.tasksService.getTasks(this.section);
   }
 }

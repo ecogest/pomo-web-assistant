@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { Section } from './sections.service';
 
 export type TaskStatus = 'todo' | 'ongoing' | 'done';
@@ -30,18 +31,27 @@ export class Task implements TaskProperties {
   providedIn: 'root',
 })
 export class TasksService {
-  private tasks: Task[] = [new Task('taks1'), new Task('task2')];
+  private tasks = new BehaviorSubject<Task[]>([
+    new Task('taks1'),
+    new Task('task2'),
+  ]);
 
   push(properties: TaskUpdateProperties) {
-    this.tasks.push(new Task(properties));
+    this.tasks.value.push(new Task(properties));
+    this.tasks.next(this.tasks.value);
   }
 
   delete(task: Task) {
-    const index = this.tasks.findIndex((value) => value === task);
-    if (index != -1) this.tasks.splice(index, 1);
+    const index = this.tasks.value.findIndex((value) => value === task);
+    if (index != -1) {
+      this.tasks.value.splice(index, 1);
+      this.tasks.next(this.tasks.value);
+    }
   }
 
   getTasks(section?: Section) {
-    return this.tasks.filter((task) => task.section === section);
+    return this.tasks.pipe(
+      map((tasks) => tasks.filter((task) => task.section === section))
+    );
   }
 }
